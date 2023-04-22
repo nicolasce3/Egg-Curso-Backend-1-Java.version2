@@ -6,6 +6,7 @@
 package mainejercicioextraservicio1;
 
 import entidades.Raices;
+import servicio.RaicesServicio;
 
 /**
  *
@@ -17,7 +18,9 @@ public class MainEjercicioExtraServicio1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Raices raices = new Raices(8,20,28);
+        Raices raices = new Raices(1, 4, 1);
+        RaicesServicio servicio = new RaicesServicio();
+        servicio.calcularRaiz(raices);
     }
-    
+
 }
