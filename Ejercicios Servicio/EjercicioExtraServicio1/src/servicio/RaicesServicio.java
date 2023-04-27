@@ -41,6 +41,7 @@ public class RaicesServicio {
     public void obtenerRaiz(Raices raices) {
         if (tieneRaiz(raices) == true) {
             double x3 = -raices.getB() / (2 * raices.getA());
+            //la fórmula de una única solución es:  -b / 2 * a 
             System.out.println("La única raíz es: " + x3);
 
         } else {

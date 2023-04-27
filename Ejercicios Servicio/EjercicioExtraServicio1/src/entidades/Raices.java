@@ -10,7 +10,7 @@ package entidades;
  * @author Discoxz01
  */
 public class Raices {
-    
+
     private double a;
     private double b;
     private double c;
@@ -48,6 +48,4 @@ public class Raices {
         this.c = c;
     }
 
-    
-    
 }

@@ -6,6 +6,8 @@
 package mainejercicioextraservicio2;
 
 import entidades.NIF;
+
+import java.util.Scanner;
 import servicio.NIFServicio;
 
 /**
@@ -34,7 +36,6 @@ public class MainEjercicioExtraServicio2 {
         NIF nif = new NIF();
         NIFServicio servicio = new NIFServicio();
         servicio.mostrarNIF(nif);
-        
+
     }
-    
 }
