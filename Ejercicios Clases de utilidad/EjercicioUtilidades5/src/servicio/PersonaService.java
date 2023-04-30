@@ -48,6 +48,8 @@ public class PersonaService {
         return edad;
 
         // se hace el cálculo pasando las fechas a milisegundos para que sea más preciso
+        // se resta la fecha actual por la fecha de nacimiento ingresada. con esa 
+        // cantidad de milisegundos se los divide por la cantidad de milisegundos en un año y se obtiene la edad.
     }
        
     public boolean menorQue(int edadPersona, int edadConsultada){
