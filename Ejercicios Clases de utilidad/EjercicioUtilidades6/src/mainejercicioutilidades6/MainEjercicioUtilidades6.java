@@ -6,7 +6,10 @@
 package mainejercicioutilidades6;
 
 import entidades.Curso;
-import java.util.Arrays;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
 import servicio.CursoServicio;
 
 /**
@@ -18,13 +21,23 @@ public class MainEjercicioUtilidades6 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Curso curso = new Curso();
         CursoServicio servicio = new CursoServicio();
-        servicio.cargarAlumnos(curso);
-        for (int i = 0; i < 5; i++) {
-            System.out.println(Arrays.toString(curso.getAlumnos()));
+      
+        servicio.crearCurso(curso);
+        try {
+            Robot limpiar = new Robot();
+            limpiar.keyPress(KeyEvent.VK_CONTROL);
+            limpiar.keyPress(KeyEvent.VK_L);
+            limpiar.keyRelease(KeyEvent.VK_CONTROL);
+            limpiar.keyRelease(KeyEvent.VK_L);
+            // Esperar un momento antes de continuar
+            Thread.sleep(100);
+        } catch (AWTException e) {
+            System.out.println("Error al limpiar la pantalla: " + e.getMessage());
         }
+        System.out.println("La ganancia por el curso es de: " + servicio.calcularGanancia(curso) + " pesos.");
         
         
     }
