@@ -8,6 +8,9 @@ package mainejercioextrautilidades1;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.time.Month;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 import java.util.Scanner;
 
@@ -30,7 +33,7 @@ public class MainEjercioExtraUtilidades1 {
      * @throws java.lang.InterruptedException
      */
     public static void main(String[] args) throws InterruptedException {
-//
+
 //        Scanner leer = new Scanner(System.in, "ISO-8859-1").useDelimiter("\\n");
 //        Locale.setDefault(new Locale("es", "ES")); // establecer el idioma en español
 //        Month[] meses = Month.values();  //crea un array con todos los meses del año
@@ -50,6 +53,7 @@ public class MainEjercioExtraUtilidades1 {
 ////     del mes en minúscula antes de asignarlo a mesesStr[i]. De esta manera, el array mesesStr contendrá 
 ////     los nombres completos de los doce meses en minúscula en el idioma predeterminado
 //        }
+//        
 //        String mesSectreto = mesesStr[8];
 //        System.out.println("Adivina el mes secreto: ");
 //        String adivinarMes = leer.next();
@@ -77,37 +81,37 @@ public class MainEjercioExtraUtilidades1 {
         
         
 
-// String[] meses = new String[12];
-//        for (int i = 0; i < 12; i++) {
-//            meses[i] = Month.of(i + 1).getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
-//        }
-//       
+ String[] meses = new String[12];
+        for (int i = 0; i < 12; i++) {
+            meses[i] = Month.of(i + 1).getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
+        }
+       
 //        ------------------------------------------------------------------------------------------------------------------------------------------
 //        
-        Scanner leer = new Scanner(System.in, "ISO-8859-1").useDelimiter("\\n");
-        String[] mes = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
-        String mesSecreto = mes[8];
-        System.out.println("Adivina el mes secreto: ");
-        String adivinarMes = leer.next();
-        adivinarMes = adivinarMes.toLowerCase();
-        while (!adivinarMes.equals(mes[8])) {
-            System.out.println("No ha acertado. Intente adivinarlo introduciendo otro mes:");
-            adivinarMes = leer.next();
-            adivinarMes = adivinarMes.toLowerCase();
-        }
-        
-           try {
-            Robot limpiar = new Robot();
-            limpiar.keyPress(KeyEvent.VK_CONTROL);
-            limpiar.keyPress(KeyEvent.VK_L);
-            limpiar.keyRelease(KeyEvent.VK_CONTROL);
-            limpiar.keyRelease(KeyEvent.VK_L);
-            // Esperar un momento antes de continuar
-            Thread.sleep(100);
-        } catch (AWTException e) {
-            System.out.println("Error al limpiar la pantalla: " + e.getMessage());
-        }
-        System.out.println("¡Ha acertado!");
-        
+//        Scanner leer = new Scanner(System.in, "ISO-8859-1").useDelimiter("\\n");
+//        String[] mes = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
+//        String mesSecreto = mes[8];
+//        System.out.println("Adivina el mes secreto: ");
+//        String adivinarMes = leer.next();
+//        adivinarMes = adivinarMes.toLowerCase();
+//        while (!adivinarMes.equals(mes[8])) {
+//            System.out.println("No ha acertado. Intente adivinarlo introduciendo otro mes:");
+//            adivinarMes = leer.next();
+//            adivinarMes = adivinarMes.toLowerCase();
+//        }
+//        
+//           try {
+//            Robot limpiar = new Robot();
+//            limpiar.keyPress(KeyEvent.VK_CONTROL);
+//            limpiar.keyPress(KeyEvent.VK_L);
+//            limpiar.keyRelease(KeyEvent.VK_CONTROL);
+//            limpiar.keyRelease(KeyEvent.VK_L);
+//            // Esperar un momento antes de continuar
+//            Thread.sleep(100);
+//        } catch (AWTException e) {
+//            System.out.println("Error al limpiar la pantalla: " + e.getMessage());
+//        }
+//        System.out.println("¡Ha acertado!");
+//        
     }
 }

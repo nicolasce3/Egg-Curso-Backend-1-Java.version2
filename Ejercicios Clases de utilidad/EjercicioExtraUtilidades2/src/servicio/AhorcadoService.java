@@ -6,6 +6,9 @@
 package servicio;
 
 import entidades.Ahorcado;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.Scanner;
 
 /**
@@ -49,15 +52,16 @@ public class AhorcadoService {
 
         boolean encontrada = false;
         for (int i = 0; i < ahorcado.getPalabraBuscar().length; i++) {
-            if (letra.equals(ahorcado.getPalabraBuscar()[i])) {               
-                return encontrada = true;             
+            if (letra.equals(ahorcado.getPalabraBuscar()[i])) {
+                ahorcado.getPalabraBuscar()[i] = "*";
+                return encontrada = true;
             }
 
         }
         return false;
     }
 
-    public void encontradas(Ahorcado ahorcado) {
+    public boolean encontradas(Ahorcado ahorcado) {
         int intentos = ahorcado.getJugadasMaximas();
         int letrasEncontradas = ahorcado.getLetrasEncontradas();
         do {
@@ -66,34 +70,46 @@ public class AhorcadoService {
             letra = letra.toLowerCase();
             boolean encontrada = buscar(ahorcado, letra);
             if (encontrada == true) {
-                System.out.println(encontrada);
+                
                 System.out.println("La letra pertenece a la palabra.");
                 letrasEncontradas++;
             } else {
-                System.out.println(encontrada);
+               
                 System.out.println("La letra no pertenece a la palabra.");
                 intentos--;
             }
 
-            System.out.println("Número de letras encontradas, faltantes: (" + (letrasEncontradas) + "-" + (letrasEncontradas-ahorcado.getPalabraBuscar().length) + ")");
+            System.out.println("Número de letras encontradas, faltantes: (" + (letrasEncontradas) + "-" + (letrasEncontradas - ahorcado.getPalabraBuscar().length) + ")");
             intentos(intentos);
         } while (intentos != 0 && letrasEncontradas != ahorcado.getPalabraBuscar().length);
-        if (ahorcado.getPalabraBuscar().length == letrasEncontradas) {
-            System.out.println("Ha descubierto toda la palabra.");
-
-        } else {
-            System.out.println("Ha agotado todos sus intentos.");
-        }
+        return intentos != 0;
     }
 
     public void intentos(int intentos) {
         System.out.println("Número de oportunidades restantes: " + intentos);
     }
 
-    public void juego(Ahorcado ahorcado) {
+    public void juego(Ahorcado ahorcado) throws InterruptedException {
         crearJuego(ahorcado);
+        try {
+            Robot limpiar = new Robot();
+            limpiar.keyPress(KeyEvent.VK_CONTROL);
+            limpiar.keyPress(KeyEvent.VK_L);
+            limpiar.keyRelease(KeyEvent.VK_CONTROL);
+            limpiar.keyRelease(KeyEvent.VK_L);
+            // Esperar un momento antes de continuar
+            Thread.sleep(100);
+        } catch (AWTException e) {
+            System.out.println("Error al limpiar la pantalla: " + e.getMessage());
+        }
         longitud(ahorcado);
-        encontradas(ahorcado);
-    }
 
+        boolean finalJuego = encontradas(ahorcado);
+        if (finalJuego) {
+            System.out.println("Ha descubierto toda la palabra.");
+
+        } else {
+            System.out.println("Ha agotado todos sus intentos.");
+        }
+    }
 }
